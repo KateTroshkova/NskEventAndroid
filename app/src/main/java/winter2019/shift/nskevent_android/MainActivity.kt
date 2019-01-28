@@ -9,9 +9,9 @@ import android.widget.Toast
 
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() /**MVPContract.View*/{
+class MainActivity : AppCompatActivity(), MVPContract.ItemView{//view
 
-    //var presenter:MVPContract.Presenter?=null
+    var presenter:MVPContract.ItemViewPresenter?=null//presenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,18 +23,18 @@ class MainActivity : AppCompatActivity() /**MVPContract.View*/{
                     .setAction("Action", null).show()
         }
 
-        //presenter=ActivityPresenter()
-        //presenter?.attachView(this)
-        //presenter?.viewIsReady()
+        presenter=ViewFragmentPresenter()//presenter
+        presenter?.attachView(this)//add view
+        presenter?.viewIsReady()
 
     }
 
     override fun onDestroy() {
         super.onDestroy()
-       // presenter?.detachView();
-        //if (isFinishing()) {
-        //    presenter?.destroy();
-        //}
+        presenter?.detachView()
+        if (isFinishing()) {
+            presenter?.destroy()
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
