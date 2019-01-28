@@ -1,14 +1,16 @@
 package winter2019.shift.nskevent_android.presenter
 
 import winter2019.shift.nskevent_android.GlobalTextVariables
+import winter2019.shift.nskevent_android.MVPView
 import winter2019.shift.nskevent_android.model.Event
 import winter2019.shift.nskevent_android.model.RestOperation
 
-class RemoteDataPrepossess: IRemoteDataHandler {
+class RemoteDataPrepossess<in MVPView>: IRemoteDataHandler {
 
     private var restOperation: RestOperation?=null
     private var validationChecker=ValidationChecker.getInstance()
     private var errorHandler:IErrorHandler?=null
+    private var view:MVPView?=null
 
     init{
         restOperation= RestOperation()

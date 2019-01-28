@@ -5,10 +5,13 @@ import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity() /**MVPContract.View*/{
+
+    //var presenter:MVPContract.Presenter?=null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,6 +22,19 @@ class MainActivity : AppCompatActivity() {
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show()
         }
+
+        //presenter=ActivityPresenter()
+        //presenter?.attachView(this)
+        //presenter?.viewIsReady()
+
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+       // presenter?.detachView();
+        //if (isFinishing()) {
+        //    presenter?.destroy();
+        //}
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
