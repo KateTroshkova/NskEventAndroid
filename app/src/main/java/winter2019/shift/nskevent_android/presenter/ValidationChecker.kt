@@ -2,7 +2,18 @@ package winter2019.shift.nskevent_android.presenter
 
 import winter2019.shift.nskevent_android.model.Event
 
-class ValidationChecker {
+class ValidationChecker private constructor() {
+
+    companion object {
+        private var instance:ValidationChecker?=null
+
+        fun getInstance():ValidationChecker{
+            if (instance==null){
+                instance=ValidationChecker()
+            }
+            return instance!!
+        }
+    }
 
     fun isEventValid(event: Event):Boolean=isTitleValid(event.title) &&
             isTextValid(event.text) && isPlaceValid(event.place) &&
