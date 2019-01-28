@@ -1,5 +1,6 @@
 package winter2019.shift.nskevent_android.presenter
 
+import winter2019.shift.nskevent_android.GlobalTextVariables
 import winter2019.shift.nskevent_android.model.Event
 import winter2019.shift.nskevent_android.model.RestOperation
 
@@ -7,9 +8,14 @@ class RemoteDataPrepossess: IRemoteDataHandler {
 
     private var restOperation: RestOperation?=null
     private var validationChecker=ValidationChecker.getInstance()
+    private var errorHandler:IErrorHandler?=null
 
     init{
         restOperation= RestOperation()
+    }
+
+    override fun setErrorCallback(errorHandler: IErrorHandler){
+        this.errorHandler=errorHandler
     }
 
     override fun requestEventInfo(n: Int) {
@@ -17,7 +23,7 @@ class RemoteDataPrepossess: IRemoteDataHandler {
             restOperation?.requestEventInfo(n)
         }
         else{
-            //TODO handle error
+            errorHandler?.onError(GlobalTextVariables.ERROR_WRONG_DATA)
         }
     }
 
@@ -26,7 +32,7 @@ class RemoteDataPrepossess: IRemoteDataHandler {
             restOperation?.requestEventInfo(event)
         }
         else{
-            //TODo error
+            errorHandler?.onError(GlobalTextVariables.ERROR_WRONG_DATA)
         }
     }
 
@@ -35,7 +41,7 @@ class RemoteDataPrepossess: IRemoteDataHandler {
             restOperation?.signUpForEvent(event, email)
         }
         else{
-            //TODo error
+            errorHandler?.onError(GlobalTextVariables.ERROR_WRONG_DATA)
         }
     }
 
@@ -44,7 +50,7 @@ class RemoteDataPrepossess: IRemoteDataHandler {
             restOperation?.refuseEvent(event, email)
         }
         else{
-            //TODo error
+            errorHandler?.onError(GlobalTextVariables.ERROR_WRONG_DATA)
         }
     }
 
@@ -53,7 +59,7 @@ class RemoteDataPrepossess: IRemoteDataHandler {
             restOperation?.createEvent(event)
         }
         else{
-            //TODo error
+            errorHandler?.onError(GlobalTextVariables.ERROR_WRONG_DATA)
         }
     }
 
@@ -62,7 +68,7 @@ class RemoteDataPrepossess: IRemoteDataHandler {
             restOperation?.deleteEvent(event, email)
         }
         else{
-            //TODo error
+            errorHandler?.onError(GlobalTextVariables.ERROR_WRONG_DATA)
         }
     }
 }
