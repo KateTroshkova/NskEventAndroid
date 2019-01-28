@@ -1,9 +1,9 @@
 package winter2019.shift.nskevent_android.model
 
-data class Event(var id:String?,
+data class Event(var id:Int?,
                  var title:String,
                  var message:String,
                  var date:String,
                  var place:String,
-                 var member_count:Int,
+                 var memberCount:Int,
                  var autor:String)
