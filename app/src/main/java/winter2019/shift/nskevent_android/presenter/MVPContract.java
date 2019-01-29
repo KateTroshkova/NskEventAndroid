@@ -1,12 +1,15 @@
 package winter2019.shift.nskevent_android.presenter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import winter2019.shift.nskevent_android.model.Event;
 
 public interface MVPContract {
 
     interface ListView extends MVPView{
         void click();
-        void load(Event event);
+        void load(List events);
         void update(Event event);
     }
 
