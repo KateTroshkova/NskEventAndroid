@@ -11,4 +11,6 @@ public class ListFragmentPresenter extends BasePresenter<MVPContract.ListView> i
     public void onClick() {
 
     }
+
+
 }
