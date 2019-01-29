@@ -12,18 +12,17 @@ import winter2019.shift.nskevent_android.presenter.MVPContract
 import winter2019.shift.nskevent_android.view.EventAdapter
 
 class MainActivity : AppCompatActivity(), MVPContract.ListView{
-    override fun click() {
-
+    override fun load(events: MutableList<Event>?) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun load(events: ArrayList<Event>?) {
-        var list=findViewById<ListView>(R.id.list_events)
-        var adapter= EventAdapter(this, events)
-        list.adapter=adapter
+    override fun update(events: MutableList<Event>?) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun update(event: Event?) {
-    }//view
+    override fun showDetail(event: Event?) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
     var presenter:ListFragmentPresenter?=null//presenter
 
