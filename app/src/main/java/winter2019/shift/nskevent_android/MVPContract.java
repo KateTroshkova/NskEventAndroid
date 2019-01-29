@@ -47,6 +47,8 @@ public interface MVPContract {
         void pickTime();
     }
 
+    //TODO activity interface
+
     interface DialogView extends MVPView{
         void setEmail(String email);
         String getEmail();

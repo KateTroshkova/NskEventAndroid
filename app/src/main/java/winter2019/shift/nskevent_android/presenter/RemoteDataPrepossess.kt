@@ -7,6 +7,8 @@ import winter2019.shift.nskevent_android.model.RestOperation
 
 class RemoteDataPrepossess<in MVPView>: IRemoteDataHandler {
 
+    //TODO smt
+
     private var restOperation: RestOperation?=null
     private var validationChecker=ValidationChecker.getInstance()
     private var errorHandler:IErrorHandler?=null
