@@ -3,18 +3,15 @@ package winter2019.shift.nskevent_android
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.*
-import android.widget.LinearLayout
-import android.widget.TextView
 
 import kotlinx.android.synthetic.main.activity_fragment.*
-import winter2019.shift.nskevent_android.model.Event
+import winter2019.shift.nskevent_android.presenter.MVPContract
+import winter2019.shift.nskevent_android.presenter.ViewFragmentPresenter
 
 class MainActivity : AppCompatActivity(){//view
 
-    var presenter:MVPContract.ItemViewPresenter?=null//presenter
+    var presenter: MVPContract.ItemViewPresenter?=null//presenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,7 +23,7 @@ class MainActivity : AppCompatActivity(){//view
                     .setAction("Action", null).show()
         }
 
-        presenter=ViewFragmentPresenter()//presenter
+        presenter= ViewFragmentPresenter()//presenter
      //   presenter?.attachView(this)//add view
         presenter?.viewIsReady()
 

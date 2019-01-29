@@ -1,4 +1,4 @@
-package winter2019.shift.nskevent_android;
+package winter2019.shift.nskevent_android.presenter;
 
 public abstract class BasePresenter<T extends MVPView> implements MVPPresenter<T> {
 

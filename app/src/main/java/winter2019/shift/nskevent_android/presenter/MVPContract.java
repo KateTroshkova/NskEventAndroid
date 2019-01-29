@@ -1,6 +1,5 @@
-package winter2019.shift.nskevent_android;
+package winter2019.shift.nskevent_android.presenter;
 
-import winter2019.shift.nskevent_android.MVPView;
 import winter2019.shift.nskevent_android.model.Event;
 
 public interface MVPContract {

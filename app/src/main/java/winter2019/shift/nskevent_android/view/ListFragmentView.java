@@ -1,6 +1,5 @@
 package winter2019.shift.nskevent_android.view;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -13,10 +12,9 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import winter2019.shift.nskevent_android.ListFragmentPresenter;
-import winter2019.shift.nskevent_android.MVPContract;
+import winter2019.shift.nskevent_android.presenter.ListFragmentPresenter;
+import winter2019.shift.nskevent_android.presenter.MVPContract;
 import winter2019.shift.nskevent_android.R;
-import winter2019.shift.nskevent_android.ViewFragmentPresenter;
 import winter2019.shift.nskevent_android.model.Event;
 
 

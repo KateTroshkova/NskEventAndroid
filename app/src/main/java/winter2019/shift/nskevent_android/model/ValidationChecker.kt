@@ -1,15 +1,13 @@
-package winter2019.shift.nskevent_android.presenter
-
-import winter2019.shift.nskevent_android.model.Event
+package winter2019.shift.nskevent_android.model
 
 class ValidationChecker private constructor() {
 
     companion object {
-        private var instance:ValidationChecker?=null
+        private var instance: ValidationChecker?=null
 
-        fun getInstance():ValidationChecker{
-            if (instance==null){
-                instance=ValidationChecker()
+        fun getInstance(): ValidationChecker {
+            if (instance ==null){
+                instance = ValidationChecker()
             }
             return instance!!
         }
