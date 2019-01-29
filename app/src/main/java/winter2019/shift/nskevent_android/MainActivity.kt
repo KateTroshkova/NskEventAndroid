@@ -7,18 +7,43 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.*
 
 import kotlinx.android.synthetic.main.activity_fragment.*
+import winter2019.shift.nskevent_android.model.Event
+import winter2019.shift.nskevent_android.presenter.ListFragmentPresenter
+import winter2019.shift.nskevent_android.presenter.MVPContract
 
-class MainActivity : AppCompatActivity(){//view
+class MainActivity : AppCompatActivity(), MVPContract.ListView{
+    override fun load(events: MutableList<Event>?) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
+    override fun update(events: MutableList<Event>?) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun showDetail(event: Event?) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    var presenter:ListFragmentPresenter?=null//presenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_fragment)
+        setContentView(R.layout.content_main)
         setSupportActionBar(toolbar)
+        presenter= ListFragmentPresenter()
+        presenter!!.attachView(this)
+        presenter?.viewIsReady()
+    }
 
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
+    fun update(view:View){
+
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        presenter?.detachView()
+        if (isFinishing()) {
+            presenter?.destroy()
         }
     }
 
