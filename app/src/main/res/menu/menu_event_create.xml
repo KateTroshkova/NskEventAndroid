@@ -1,0 +1,10 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/button_create_events"
+        android:icon="@drawable/marck_creating"
+        android:visible="true"
+        android:title="@string/create_event"
+        app:showAsAction="ifRoom|withText" />
+
+</menu>

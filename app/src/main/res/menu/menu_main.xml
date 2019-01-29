@@ -7,4 +7,10 @@
         android:orderInCategory="100"
         android:title="@string/action_settings"
         app:showAsAction="never" />
+
+    <item
+        android:id="@+id/menu_item_new_event"
+        android:icon="@drawable/ic_menu_add"
+        android:title="@string/new_event"
+        app:showAsAction="ifRoom|withText"/>
 </menu>

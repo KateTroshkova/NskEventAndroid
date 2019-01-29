@@ -3,19 +3,22 @@ package winter2019.shift.nskevent_android
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity;
-import android.view.Menu
-import android.view.MenuItem
-import android.widget.Toast
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
+import android.view.*
+import android.widget.LinearLayout
+import android.widget.TextView
 
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_fragment.*
+import winter2019.shift.nskevent_android.model.Event
 
-class MainActivity : AppCompatActivity() /**MVPContract.View*/{
+class MainActivity : AppCompatActivity(){//view
 
-    //var presenter:MVPContract.Presenter?=null
+    var presenter:MVPContract.ItemViewPresenter?=null//presenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_fragment)
         setSupportActionBar(toolbar)
 
         fab.setOnClickListener { view ->
@@ -23,18 +26,19 @@ class MainActivity : AppCompatActivity() /**MVPContract.View*/{
                     .setAction("Action", null).show()
         }
 
-        //presenter=ActivityPresenter()
-        //presenter?.attachView(this)
-        //presenter?.viewIsReady()
+        presenter=ViewFragmentPresenter()//presenter
+     //   presenter?.attachView(this)//add view
+        presenter?.viewIsReady()
+
 
     }
 
     override fun onDestroy() {
         super.onDestroy()
-       // presenter?.detachView();
-        //if (isFinishing()) {
-        //    presenter?.destroy();
-        //}
+        presenter?.detachView()
+        if (isFinishing()) {
+            presenter?.destroy()
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -53,3 +57,4 @@ class MainActivity : AppCompatActivity() /**MVPContract.View*/{
         }
     }
 }
+
