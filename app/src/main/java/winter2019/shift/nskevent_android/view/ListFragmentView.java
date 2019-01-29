@@ -83,8 +83,8 @@ public class ListFragmentView extends Fragment implements MVPContract {
         }
 
         @Override
-        public void load(Event event) {
-            Toast.makeText(getContext(), "", Toast.LENGTH_SHORT).show();
+        public void load(List events) {
+            Toast.makeText(getContext(), ""+events.size(), Toast.LENGTH_SHORT).show();
         }
 
         @Override
