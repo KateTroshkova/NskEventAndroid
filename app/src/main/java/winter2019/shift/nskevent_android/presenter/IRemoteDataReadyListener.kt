@@ -6,6 +6,7 @@ import winter2019.shift.nskevent_android.model.Event
 
 interface IRemoteDataReadyListener {
 
+    fun onError()
     fun onGetNEvents(events:MutableList<Event>)
     fun onGetEvent(event:Event)
     fun onSuccessSignUp()

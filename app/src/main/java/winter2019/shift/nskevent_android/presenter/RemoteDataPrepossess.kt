@@ -18,13 +18,9 @@ class RemoteDataPrepossess<in MVPView>: IRemoteDataHandler {
         restOperation= RestOperation()
     }
 
-    override fun setErrorCallback(errorHandler: IErrorHandler){
-        this.errorHandler=errorHandler
-    }
-
-    override fun requestEventInfo(n: Int) {
-        if (n>0 && restOperation!=null){
-            restOperation?.requestEventInfo(n)
+    override fun requestEventInfo(page: Int, limit:Int) {
+        if (page>0 && restOperation!=null){
+            restOperation?.requestEventInfo(page, limit)
         }
         else{
             errorHandler?.onError(GlobalTextVariables.ERROR_WRONG_DATA)

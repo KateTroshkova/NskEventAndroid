@@ -6,8 +6,7 @@ import winter2019.shift.nskevent_android.model.Event
 
 interface IRemoteDataHandler {
 
-    fun setErrorCallback(errorHandler: IErrorHandler)
-    fun requestEventInfo(n:Int)
+    fun requestEventInfo(page:Int, limit:Int)
     fun requestEventInfo(event: Event)
     fun signUpForEvent(event:Event, email:String)
     fun refuseEvent(event:Event, email:String)
