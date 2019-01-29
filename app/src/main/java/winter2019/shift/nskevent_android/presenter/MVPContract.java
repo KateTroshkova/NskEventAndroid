@@ -8,9 +8,9 @@ import winter2019.shift.nskevent_android.model.Event;
 public interface MVPContract {
 
     interface ListView extends MVPView{
-        void click();
-        void load(List events);
-        void update(Event event);
+        void load(List<Event> events);
+        void update(List<Event> events);
+        void showDetail(Event event);
     }
 
     interface ItemView extends MVPView{
@@ -57,10 +57,6 @@ public interface MVPContract {
         void click();
         void hide();
         void show();
-    }
-
-    interface ListViewPresenter extends MVPPresenter<ListView>{
-        void onClick();
     }
 
     interface ItemViewPresenter extends MVPPresenter<ItemView>{

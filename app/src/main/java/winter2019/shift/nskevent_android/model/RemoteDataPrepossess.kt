@@ -3,18 +3,20 @@ package winter2019.shift.nskevent_android.model
 import winter2019.shift.nskevent_android.GlobalTextVariables
 import winter2019.shift.nskevent_android.presenter.IErrorHandler
 import winter2019.shift.nskevent_android.presenter.IRemoteDataHandler
+import winter2019.shift.nskevent_android.presenter.IRemoteDataReadyListener
 
-class RemoteDataPrepossess<in MVPView>: IRemoteDataHandler {
-
-    //TODO smt
+class RemoteDataPrepossess: IRemoteDataHandler {
 
     private var restOperation: RestOperation?=null
     private var validationChecker= ValidationChecker.getInstance()
     private var errorHandler: IErrorHandler?=null
-    private var view:MVPView?=null
 
     init{
-        restOperation= RestOperation()
+        restOperation = RestOperation()
+    }
+
+    fun setReadyListener(listener:IRemoteDataReadyListener){
+        restOperation?.setRemoteDataReadyListener(listener)
     }
 
     override fun requestEventInfo(page: Int, limit:Int) {
@@ -26,9 +28,9 @@ class RemoteDataPrepossess<in MVPView>: IRemoteDataHandler {
         }
     }
 
-    override fun requestEventInfo(event: Event) {
-        if (validationChecker.isEventValid(event)){
-            restOperation?.requestEventInfo(event)
+    override fun requestEventInfo(id:Int) {
+        if (id>0){
+            restOperation?.requestEventInfo(id)
         }
         else{
             errorHandler?.onError(GlobalTextVariables.ERROR_WRONG_DATA)
