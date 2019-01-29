@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -37,7 +38,7 @@ public class ListFragmentView extends Fragment implements MVPContract {
         return view;
     }
 
-    private class EventsHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    private class EventsHolder extends RecyclerView.ViewHolder implements View.OnClickListener, MVPContract.ListView{
         private TextView eventTitle;
         private TextView eventMessage;
         private TextView eventDate;
@@ -50,6 +51,8 @@ public class ListFragmentView extends Fragment implements MVPContract {
             eventTitle = (TextView) itemView.findViewById(R.id.event_title);
             eventMessage = (TextView) itemView.findViewById(R.id.event_message);
             eventDate = (TextView) itemView.findViewById(R.id.event_date);
+            preseinter=new ListFragmentPresenter();
+            preseinter.attachView(this);
         }
 
         @Override
@@ -72,6 +75,21 @@ public class ListFragmentView extends Fragment implements MVPContract {
             eventMessage.setText(eventNsk.
             eventDate.setText(eventNsk.
              */
+        }
+
+        @Override
+        public void click() {
+
+        }
+
+        @Override
+        public void load(Event event) {
+            Toast.makeText(getContext(), "", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void update(Event event) {
+
         }
     }
 
