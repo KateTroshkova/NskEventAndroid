@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity;
 import android.view.*
 import android.widget.ListView
+import android.widget.Toast
 
 import kotlinx.android.synthetic.main.activity_main.*
 import winter2019.shift.nskevent_android.model.Event
@@ -12,8 +13,12 @@ import winter2019.shift.nskevent_android.presenter.MVPContract
 import winter2019.shift.nskevent_android.view.EventAdapter
 
 class MainActivity : AppCompatActivity(), MVPContract.ListView{
-    override fun load(events: MutableList<Event>?) {
+    override fun onError() {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun load(events: MutableList<Event>?) {
+        Toast.makeText(this, "here", Toast.LENGTH_SHORT).show()
     }
 
     override fun update(events: MutableList<Event>?) {
