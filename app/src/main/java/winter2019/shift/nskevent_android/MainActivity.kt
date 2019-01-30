@@ -16,6 +16,19 @@ class MainActivity : AppCompatActivity(), MVPContract.ListView{
     override fun load(events: MutableList<Event>?) {
 
         var listEvent = findViewById(R.id.list_events) as ListView
+
+        /*
+        //For test
+        var listTest = ArrayList<Event>()
+
+        listTest.add(Event(0, "ffff", "dddddd", "ddddddddd", "dsssssss", 0, "ddddddd"))
+        listTest.add(Event(0, "ffff", "dddddd", "ddddddddd", "dsssssss", 0, "ddddddd"))
+        listTest.add(Event(0, "ffff", "dddddd", "ddddddddd", "dsssssss", 0, "ddddddd"))
+        listTest.add(Event(0, "ffff", "dddddd", "ddddddddd", "dsssssss", 0, "ddddddd"))
+        listTest.add(Event(0, "ffff", "dddddd", "ddddddddd", "dsssssss", 0, "ddddddd"))
+        listTest.add(Event(0, "ffff", "dddddd", "ddddddddd", "dsssssss", 0, "ddddddd"))
+*/
+        
         listEvent.adapter = EventsAdapter(this, events as ArrayList<Event>)
     }
 
