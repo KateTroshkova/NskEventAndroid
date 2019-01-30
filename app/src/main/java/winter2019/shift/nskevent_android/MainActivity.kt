@@ -11,19 +11,20 @@ import winter2019.shift.nskevent_android.model.Event
 import winter2019.shift.nskevent_android.presenter.ListFragmentPresenter
 import winter2019.shift.nskevent_android.presenter.MVPContract
 import winter2019.shift.nskevent_android.view.EventAdapter
+import winter2019.shift.nskevent_android.view.EventsAdapter
 
 class MainActivity : AppCompatActivity(), MVPContract.ListView{
     override fun load(events: MutableList<Event>?) {
-        Toast.makeText(this, "here", Toast.LENGTH_SHORT).show()
-        var listEvent = findViewById(R.id.list_events) as ListView
 
+        var listEvent = findViewById(R.id.list_events) as ListView
+/*
         var listTest: ArrayList<Event> = ArrayList()
         listTest.add(Event(0, "Titttttttt", "dddddddddddd", "00011212", "lololol", 0, "ddd"))
         listTest.add(Event(0, "Titttttttt", "dddddddddddd", "00011212", "lololol", 0, "ddd"))
         listTest.add(Event(0, "Titttttttt", "dddddddddddd", "00011212", "lololol", 0, "ddd"))
-        listTest.add(Event(0, "Titttttttt", "dddddddddddd", "00011212", "lololol", 0, "ddd"))
+        listTest.add(Event(0, "Titttttttt", "dddddddddddd", "00011212", "lololol", 0, "ddd"))*/
 
-        listEvent.adapter = EventAdapter(this, listTest)
+        listEvent.adapter = EventsAdapter(this, events)
     }
 
     override fun update(events: MutableList<Event>?) {
@@ -47,18 +48,10 @@ class MainActivity : AppCompatActivity(), MVPContract.ListView{
         setSupportActionBar(toolbar)
         presenter=ListFragmentPresenter()
         presenter!!.attachView(this)
-       // presenter?.viewIsReady()
+        presenter?.viewIsReady()
 
 
-        var listEvent = findViewById(R.id.list_events) as ListView
 
-        var listTest: ArrayList<Event> = ArrayList()
-        listTest.add(Event(0, "Titttttttt", "dddddddddddd", "00011212", "lololol", 0, "ddd"))
-        listTest.add(Event(0, "Titttttttt", "dddddddddddd", "00011212", "lololol", 0, "ddd"))
-        listTest.add(Event(0, "Titttttttt", "dddddddddddd", "00011212", "lololol", 0, "ddd"))
-        listTest.add(Event(0, "Titttttttt", "dddddddddddd", "00011212", "lololol", 0, "ddd"))
-
-        listEvent.adapter = EventAdapter(this, listTest)
     }
 
     fun update(view:View){

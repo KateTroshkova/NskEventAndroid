@@ -39,7 +39,7 @@ public class EventAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View view = inflater.inflate(R.layout.fragment_event_viewing, null);
+        View view = inflater.inflate(R.layout._list_item_event_one, null);
 
         TextView eventsTitle = view.findViewById(R.id.event_title);
         TextView eventMessage = view.findViewById(R.id.event_message);
