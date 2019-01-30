@@ -13,7 +13,7 @@ import winter2019.shift.nskevent_android.presenter.IRemoteDataReadyListener
 
 class RestOperation:IRemoteDataHandler {
 
-    private val BASE_URL="TODO_LATER/"
+    private val BASE_URL="https://nskevent.herokuapp.com"
     private var requestInterface: IRequest
     private var readyListener:IRemoteDataReadyListener?=null
 
