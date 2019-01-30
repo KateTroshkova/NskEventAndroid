@@ -1,24 +1,23 @@
 package winter2019.shift.nskevent_android.presenter;
 
-public class ViewFragmentPresenter extends BasePresenter<MVPContract.ItemView> implements MVPContract.ItemViewPresenter {
+import winter2019.shift.nskevent_android.model.Event;
 
-    @Override
-    public void onClicklickDate() {
+public class ViewFragmentPresenter extends BasePresenter<MVPContract.ItemView> {
 
+    private Event currentEvent;
+
+    public ViewFragmentPresenter(Event event){
+        currentEvent=event;
     }
 
     @Override
-    public void onClickOk() {
+    public void viewIsReady() { }
 
+    public void onAccept(){
+        getView().showDialog(currentEvent, Action.ACTION_ACCEPT);
     }
 
-    @Override
-    public void onClickRefuse() {
-
-    }
-
-    @Override
-    public void viewIsReady() {
-
+    public void onRefuse(){
+        getView().showDialog(currentEvent, Action.ACTION_REFUSE);
     }
 }
