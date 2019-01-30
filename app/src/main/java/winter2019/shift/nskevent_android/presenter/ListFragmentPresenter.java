@@ -24,7 +24,7 @@ public class ListFragmentPresenter extends BasePresenter<MVPContract.ListView>{
         @Override
         public void onGetNEvents(@NotNull List<Event> events) {
             ListFragmentPresenter.this.newEvents=events;
-            if (ListFragmentPresenter.this.events.isEmpty()) {
+            if (ListFragmentPresenter.this.events==null || ListFragmentPresenter.this.events.isEmpty()) {
                 ListFragmentPresenter.this.getView().load(newEvents);
                 ListFragmentPresenter.this.events=new ArrayList<>();
             }

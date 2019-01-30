@@ -2,6 +2,7 @@ package winter2019.shift.nskevent_android.model
 
 import io.reactivex.Scheduler
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -33,14 +34,7 @@ class RestOperation:IRemoteDataHandler {
         val disposable = requestInterface.getNEvent(page, limit).
                 subscribeOn(Schedulers.io()).
                 observeOn(AndroidSchedulers.mainThread()).
-                subscribe ({
-                    list->readyListener?.onGetNEvents(list.toMutableList())
-                }, {
-                    _ ->readyListener?.onError()
-                })
-        //if (!disposable.isDisposed) {
-        //    disposable.dispose()
-        //}
+                subscribe ({ list->readyListener?.onGetNEvents(list.toMutableList()) }, { _ ->readyListener?.onError() })
     }
 
     override fun requestEventInfo(id:Int) {
@@ -48,9 +42,6 @@ class RestOperation:IRemoteDataHandler {
                 subscribeOn(Schedulers.io()).
                 observeOn(AndroidSchedulers.mainThread()).
                 subscribe ({ event->readyListener?.onGetEvent(event)}, { _ ->readyListener?.onError()})
-        if (!disposable.isDisposed) {
-            disposable.dispose()
-        }
     }
 
     override fun signUpForEvent(event: Event, email: String) {
@@ -58,9 +49,6 @@ class RestOperation:IRemoteDataHandler {
                 subscribeOn(Schedulers.io()).
                 observeOn(AndroidSchedulers.mainThread()).
                 subscribe ({ message->readyListener?.onSuccessSignUp()}, { _ ->readyListener?.onErrorSignUp()})
-        if (!disposable.isDisposed) {
-            disposable.dispose()
-        }
     }
 
     override fun refuseEvent(event: Event, email: String) {
@@ -68,9 +56,6 @@ class RestOperation:IRemoteDataHandler {
                 subscribeOn(Schedulers.io()).
                 observeOn(AndroidSchedulers.mainThread()).
                 subscribe ({ _ ->readyListener?.onSuccessRefuse()}, { _ ->readyListener?.onErrorRefuse()})
-        if (!disposable.isDisposed) {
-            disposable.dispose()
-        }
     }
 
     override fun createEvent(event: Event) {
@@ -78,9 +63,6 @@ class RestOperation:IRemoteDataHandler {
                 subscribeOn(Schedulers.io()).
                 observeOn(AndroidSchedulers.mainThread()).
                 subscribe ({ message->readyListener?.onSuccessCreate()}, { _ ->readyListener?.onErrorCreate()})
-        if (!disposable.isDisposed) {
-            disposable.dispose()
-        }
     }
 
     override fun deleteEvent(event: Event, email: String) {
@@ -88,6 +70,9 @@ class RestOperation:IRemoteDataHandler {
                 subscribeOn(Schedulers.io()).
                 observeOn(AndroidSchedulers.mainThread()).
                 subscribe ({ message->readyListener?.onSuccessDelete()}, { _ ->readyListener?.onErrorDelete()})
+    }
+
+    fun release(disposable: Disposable){
         if (!disposable.isDisposed) {
             disposable.dispose()
         }
