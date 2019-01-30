@@ -3,7 +3,9 @@ package winter2019.shift.nskevent_android
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity;
 import android.view.*
+import android.widget.AdapterView
 import android.widget.ListView
+import android.widget.Toast
 
 import kotlinx.android.synthetic.main.activity_main.*
 import winter2019.shift.nskevent_android.model.Event
@@ -28,8 +30,13 @@ class MainActivity : AppCompatActivity(), MVPContract.ListView{
         listTest.add(Event(0, "ffff", "dddddd", "ddddddddd", "dsssssss", 0, "ddddddd"))
         listTest.add(Event(0, "ffff", "dddddd", "ddddddddd", "dsssssss", 0, "ddddddd"))
 */
-        
-        listEvent.adapter = EventsAdapter(this, events as ArrayList<Event>)
+
+        listEvent.adapter = EventsAdapter(this, R.layout._list_item_event_one, events as ArrayList<Event>)
+        listEvent.setOnItemClickListener { AdapterView, view, position, id ->
+            if (position == 0) {
+                Toast.makeText(this, "fffffff", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     override fun update(events: MutableList<Event>?) {
