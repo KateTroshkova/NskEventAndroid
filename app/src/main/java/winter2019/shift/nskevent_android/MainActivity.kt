@@ -4,27 +4,21 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity;
 import android.view.*
 import android.widget.ListView
-import android.widget.Toast
 
 import kotlinx.android.synthetic.main.activity_main.*
 import winter2019.shift.nskevent_android.model.Event
 import winter2019.shift.nskevent_android.presenter.ListFragmentPresenter
 import winter2019.shift.nskevent_android.presenter.MVPContract
-import winter2019.shift.nskevent_android.view.EventAdapter
 import winter2019.shift.nskevent_android.view.EventsAdapter
 
 class MainActivity : AppCompatActivity(), MVPContract.ListView{
+
     override fun load(events: MutableList<Event>?) {
 
         var listEvent = findViewById(R.id.list_events) as ListView
-/*
-        var listTest: ArrayList<Event> = ArrayList()
-        listTest.add(Event(0, "Titttttttt", "dddddddddddd", "00011212", "lololol", 0, "ddd"))
-        listTest.add(Event(0, "Titttttttt", "dddddddddddd", "00011212", "lololol", 0, "ddd"))
-        listTest.add(Event(0, "Titttttttt", "dddddddddddd", "00011212", "lololol", 0, "ddd"))
-        listTest.add(Event(0, "Titttttttt", "dddddddddddd", "00011212", "lololol", 0, "ddd"))*/
 
-        listEvent.adapter = EventsAdapter(this, events)
+
+        listEvent.adapter = EventsAdapter(this, events as ArrayList<Event>)
     }
 
     override fun update(events: MutableList<Event>?) {
