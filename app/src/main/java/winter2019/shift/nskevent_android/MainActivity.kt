@@ -16,8 +16,6 @@ class MainActivity : AppCompatActivity(), MVPContract.ListView{
     override fun load(events: MutableList<Event>?) {
 
         var listEvent = findViewById(R.id.list_events) as ListView
-
-
         listEvent.adapter = EventsAdapter(this, events as ArrayList<Event>)
     }
 

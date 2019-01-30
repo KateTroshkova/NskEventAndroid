@@ -33,10 +33,14 @@ class RestOperation:IRemoteDataHandler {
         val disposable = requestInterface.getNEvent(page, limit).
                 subscribeOn(Schedulers.io()).
                 observeOn(AndroidSchedulers.mainThread()).
-                subscribe ({ list->readyListener?.onGetNEvents(list.toMutableList())}, { _ ->readyListener?.onError()})
-        if (!disposable.isDisposed) {
-            disposable.dispose()
-        }
+                subscribe ({
+                    list->readyListener?.onGetNEvents(list.toMutableList())
+                }, {
+                    _ ->readyListener?.onError()
+                })
+        //if (!disposable.isDisposed) {
+        //    disposable.dispose()
+        //}
     }
 
     override fun requestEventInfo(id:Int) {
