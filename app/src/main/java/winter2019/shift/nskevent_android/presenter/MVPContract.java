@@ -16,7 +16,6 @@ public interface MVPContract {
 
     interface ItemView extends MVPView{
         void showDialog(Event event, Action action);
-        void onError();
     }
 
     interface CreateView extends MVPView{
@@ -27,13 +26,16 @@ public interface MVPContract {
         int getMemberCount();
         String getEmail();
         void showProgressBar();
+        void hideProgressBar();
         void onSuccess();
         void onError();
+        void showAll();
     }
 
     interface DialogView extends MVPView{
         String getEmail();
         void showProgressBar();
+        void hideProgressBar();
         void hideDialog();
         void onSuccess();
         void onError();
