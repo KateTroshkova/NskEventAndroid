@@ -13,7 +13,8 @@ public class CreateFragmentPresenter extends BasePresenter<MVPContract.CreateVie
     private IRemoteDataReadyListener listener=new IRemoteDataReadyListener() {
         @Override
         public void onError() {
-
+            CreateFragmentPresenter.this.getView().hideProgressBar();
+            CreateFragmentPresenter.this.getView().onError();
         }
 
         @Override
@@ -38,7 +39,9 @@ public class CreateFragmentPresenter extends BasePresenter<MVPContract.CreateVie
 
         @Override
         public void onSuccessCreate() {
+            CreateFragmentPresenter.this.getView().hideProgressBar();
             CreateFragmentPresenter.this.getView().onSuccess();
+            CreateFragmentPresenter.this.getView().showAll();
         }
 
         @Override
@@ -58,6 +61,7 @@ public class CreateFragmentPresenter extends BasePresenter<MVPContract.CreateVie
 
         @Override
         public void onErrorCreate() {
+            CreateFragmentPresenter.this.getView().hideProgressBar();
             CreateFragmentPresenter.this.getView().onError();
         }
 
@@ -72,7 +76,7 @@ public class CreateFragmentPresenter extends BasePresenter<MVPContract.CreateVie
 
     }
 
-    public void createClick(){
+    public void onClick(){
         Event newEvent=new EventFactory().createEvent(
                 getView().getTitle(),
                 getView().getMessage(),

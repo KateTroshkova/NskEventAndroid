@@ -17,8 +17,9 @@ public class ListFragmentPresenter extends BasePresenter<MVPContract.ListView>{
 
     private IRemoteDataReadyListener listener=new IRemoteDataReadyListener() {
         @Override
-        public void onError() { //TODO add errors
-            }
+        public void onError() {
+            ListFragmentPresenter.this.getView().onError();
+        }
 
         @Override
         public void onGetNEvents(@NotNull List<Event> events) {

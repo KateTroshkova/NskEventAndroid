@@ -9,9 +9,18 @@ import winter2019.shift.nskevent_android.model.RemoteDataPrepossess;
 
 public class DialogPresenter extends BasePresenter<MVPContract.DialogView> {
 
+    private Event currentEvent;
+    private Action currentAction;
+
+    public DialogPresenter(Event event, Action action){
+        currentEvent=event;
+        currentAction=action;
+    }
+
     private IRemoteDataReadyListener listener=new IRemoteDataReadyListener() {
         @Override
         public void onError() {
+            DialogPresenter.this.getView().hideProgressBar();
             DialogPresenter.this.getView().onError();
         }
 
@@ -23,12 +32,14 @@ public class DialogPresenter extends BasePresenter<MVPContract.DialogView> {
 
         @Override
         public void onSuccessSignUp() {
+            DialogPresenter.this.getView().hideProgressBar();
             DialogPresenter.this.getView().onSuccess();
             DialogPresenter.this.getView().hideDialog();
         }
 
         @Override
         public void onSuccessRefuse() {
+            DialogPresenter.this.getView().hideProgressBar();
             DialogPresenter.this.getView().onSuccess();
             DialogPresenter.this.getView().hideDialog();
         }
@@ -39,18 +50,21 @@ public class DialogPresenter extends BasePresenter<MVPContract.DialogView> {
 
         @Override
         public void onSuccessDelete() {
+            DialogPresenter.this.getView().hideProgressBar();
             DialogPresenter.this.getView().onSuccess();
             DialogPresenter.this.getView().hideDialog();
         }
 
         @Override
         public void onErrorSignUp() {
+            DialogPresenter.this.getView().hideProgressBar();
             DialogPresenter.this.getView().onError();
             DialogPresenter.this.getView().hideDialog();
         }
 
         @Override
         public void onErrorRefuse() {
+            DialogPresenter.this.getView().hideProgressBar();
             DialogPresenter.this.getView().onError();
             DialogPresenter.this.getView().hideDialog();
         }
@@ -61,6 +75,7 @@ public class DialogPresenter extends BasePresenter<MVPContract.DialogView> {
 
         @Override
         public void onErrorDelete() {
+            DialogPresenter.this.getView().hideProgressBar();
             DialogPresenter.this.getView().onError();
             DialogPresenter.this.getView().hideDialog();
         }
@@ -69,21 +84,21 @@ public class DialogPresenter extends BasePresenter<MVPContract.DialogView> {
     @Override
     public void viewIsReady() {}
 
-    public void okClick(Event event, Action action){
+    public void onClick(){
         RemoteDataPrepossess remoteData=new RemoteDataPrepossess();
         remoteData.setReadyListener(listener);
         String email=getView().getEmail();
-        switch(action){
+        switch(currentAction){
             case ACTION_ACCEPT:{
-                remoteData.signUpForEvent(event, email);
+                remoteData.signUpForEvent(currentEvent, email);
                 break;
             }
             case ACTION_REFUSE:{
-                remoteData.refuseEvent(event, email);
+                remoteData.refuseEvent(currentEvent, email);
                 break;
             }
             case ACTION_DELETE:{
-                remoteData.deleteEvent(event, email);
+                remoteData.deleteEvent(currentEvent, email);
                 break;
             }
             default:{

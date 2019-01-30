@@ -20,4 +20,8 @@ public class ViewFragmentPresenter extends BasePresenter<MVPContract.ItemView> {
     public void onRefuse(){
         getView().showDialog(currentEvent, Action.ACTION_REFUSE);
     }
+
+    public void onDelete(){
+        getView().showDialog(currentEvent, Action.ACTION_DELETE);
+    }
 }
