@@ -65,15 +65,16 @@ public class ListFragmentPresenter extends BasePresenter<MVPContract.ListView>{
 
     @Override
     public void viewIsReady() {
-        //ArrayList<Event> data=new ArrayList<>();
-        //for (int i=0; i<42; i++){
-        //    data.add(new Event(42, "faq", "fuck off", "01.01.1970", "nowhere", 0, "no one"));
-        //}
-        //getView().load(data);
+        ArrayList<Event> data=new ArrayList<>();
+        for (int i=0; i<42; i++){
+            data.add(new Event(42, "faq", "fuck off", "01.01.1970", "nowhere", 0, "no one"));
+        }
+        getView().load(data);
+        /*
         RemoteDataPrepossess remoteData=new RemoteDataPrepossess();
         remoteData.setReadyListener(listener);
         PAGE_COUNT++;
-        remoteData.requestEventInfo(PAGE_COUNT, MAX_EVENTS_ON_PAGE);
+        remoteData.requestEventInfo(PAGE_COUNT, MAX_EVENTS_ON_PAGE);*/
     }
 
     public void onItemClick(int position) {

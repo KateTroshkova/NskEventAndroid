@@ -13,10 +13,6 @@ import winter2019.shift.nskevent_android.presenter.MVPContract
 import winter2019.shift.nskevent_android.view.EventAdapter
 
 class MainActivity : AppCompatActivity(), MVPContract.ListView{
-    override fun onError() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
     override fun load(events: MutableList<Event>?) {
         Toast.makeText(this, "here", Toast.LENGTH_SHORT).show()
     }
@@ -28,6 +24,11 @@ class MainActivity : AppCompatActivity(), MVPContract.ListView{
     override fun showDetail(event: Event?) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
+
+    override fun onError() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
 
     var presenter:ListFragmentPresenter?=null//presenter
 
