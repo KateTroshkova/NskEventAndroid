@@ -19,7 +19,7 @@ class Event():Parcelable {
         this.date=date
         this.place=place
         this.memberCount=memberCount
-        this.author=autor
+        this.author=author
     }
 
     protected constructor(dest: android.os.Parcel) : this() {

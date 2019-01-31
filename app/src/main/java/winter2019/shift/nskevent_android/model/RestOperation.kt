@@ -49,7 +49,7 @@ class RestOperation:IRemoteDataHandler {
                 subscribeOn(Schedulers.io()).
                 observeOn(AndroidSchedulers.mainThread()).
                 subscribe ({
-                    message->readyListener?.onSuccessSignUp()},
+                    message->readyListener?.onSuccessSignUp(message)},
                         { _ ->readyListener?.onErrorSignUp()})
     }
 
