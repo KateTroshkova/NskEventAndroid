@@ -74,7 +74,7 @@ class TestActivity : AppCompatActivity(){
     fun getOne(vew:View){
         val remoteData = RemoteDataPrepossess()
         remoteData.setReadyListener(listener)
-        remoteData.requestEventInfo(1)
+        remoteData.requestEventInfo(42)
     }
 
     fun accept(view:View){
@@ -92,14 +92,12 @@ class TestActivity : AppCompatActivity(){
     fun create(view:View){
         val remoteData = RemoteDataPrepossess()
         remoteData.setReadyListener(listener)
-        remoteData.createEvent(Event(14, "nice title", "nice message",
-                "nice date", "nice place", 0, "e-troshkova@inbox.ru"))
+        remoteData.createEvent(events[2])
     }
 
     fun delete(view:View){
         val remoteData = RemoteDataPrepossess()
         remoteData.setReadyListener(listener)
-        remoteData.deleteEvent(Event(14, "nice title", "nice message",
-                "nice date", "nice place", 0, "e-troshkova@inbox.ru"), "e-troshkova@inbox.ru")
+        remoteData.deleteEvent(events[13], "e-troshkova@inbox.ru")
     }
 }

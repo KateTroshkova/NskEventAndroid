@@ -42,7 +42,6 @@ class MainActivity : AppCompatActivity(), MVPContract.ListView{
         presenter=ListFragmentPresenter()
         presenter!!.attachView(this)
         presenter?.viewIsReady()
-        startActivity(Intent(this, TestActivity::class.java))
 
 
 

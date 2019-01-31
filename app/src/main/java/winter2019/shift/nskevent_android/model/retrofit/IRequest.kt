@@ -22,10 +22,10 @@ interface IRequest {
     @POST("/api/v001/events")
     fun createEvent(@Body event:Event):Observable<Answer>
 
-    @DELETE("/api/v001/eventvisitor/{id}")
+    @DELETE("/api/v001/events/{id}")
     fun deleteEvent(@Path("id") id:Int, @Query("email") email:String):Observable<Answer>
 
-    @DELETE("/api/v001/events/{id}")
+    @DELETE("/api/v001/eventvisitor/{id}")
     fun sendRefuse(@Path("id") id:Int, @Query("email") email:String):Observable<Answer>
 
 }

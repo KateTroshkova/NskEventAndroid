@@ -87,4 +87,8 @@ public class ListFragmentPresenter extends BasePresenter<MVPContract.ListView>{
             listener.onError();
         }
     }
+
+    public void onClick(){
+        getView().showCreationActivity();
+    }
 }

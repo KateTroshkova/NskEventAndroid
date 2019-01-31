@@ -12,6 +12,7 @@ public interface MVPContract {
         void update(List<Event> events);
         void showDetail(Event event);
         void onError();
+        void showCreationActivity();
     }
 
     interface ItemView extends MVPView{
