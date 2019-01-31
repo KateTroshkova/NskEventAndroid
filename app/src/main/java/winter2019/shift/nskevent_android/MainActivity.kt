@@ -17,53 +17,26 @@ import winter2019.shift.nskevent_android.view.EventsAdapter
 
 class MainActivity : AppCompatActivity(), MVPContract.ListView{
 
+    var presenter:ListFragmentPresenter?=null
 
     override fun load(events: MutableList<Event>?) {
-
-        var listEvent = findViewById(R.id.list_events) as ListView
-
-        /*
-        //For test
-        var listTest = ArrayList<Event>()
-
-        listTest.add(Event(0, "ffff", "dddddd", "ddddddddd", "dsssssss", 0, "ddddddd"))
-        listTest.add(Event(0, "ffff", "dddddd", "ddddddddd", "dsssssss", 0, "ddddddd"))
-        listTest.add(Event(0, "ffff", "dddddd", "ddddddddd", "dsssssss", 0, "ddddddd"))
-        listTest.add(Event(0, "ffff", "dddddd", "ddddddddd", "dsssssss", 0, "ddddddd"))
-        listTest.add(Event(0, "ffff", "dddddd", "ddddddddd", "dsssssss", 0, "ddddddd"))
-        listTest.add(Event(0, "ffff", "dddddd", "ddddddddd", "dsssssss", 0, "ddddddd"))
-*/
-
+        val listEvent = findViewById(R.id.list_events) as ListView
         listEvent.adapter = EventsAdapter(this, R.layout._list_item_event_one, events as ArrayList<Event>)
         listEvent.setOnItemClickListener { AdapterView, view, position, id ->
-            //For test
-            /*if (position == 0) {
-                Toast.makeText(this, "fffffff", Toast.LENGTH_SHORT).show()
-            }*/
-
-
-           var intent = Intent(this, EventViewActivity::class.java)
-            intent.putExtra("eventPosition", position)
-            intent.putParcelableArrayListExtra("EventsList", events)
-           startActivity(intent)
-
+           presenter?.onItemClick(position)
         }
     }
 
     override fun update(events: MutableList<Event>?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun showDetail(event: Event?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val intent = Intent(this, EventViewActivity::class.java)
+        intent.putExtra("EventsList", event)
+        startActivity(intent)
     }
 
-    override fun onError() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-
-    var presenter:ListFragmentPresenter?=null//presenter
+    override fun onError() {}
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -72,15 +45,6 @@ class MainActivity : AppCompatActivity(), MVPContract.ListView{
         presenter=ListFragmentPresenter()
         presenter!!.attachView(this)
         presenter?.viewIsReady()
-
-
-
-    }
-
-
-
-    fun update(view:View){
-
     }
 
     override fun onDestroy() {
@@ -92,15 +56,11 @@ class MainActivity : AppCompatActivity(), MVPContract.ListView{
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu_main, menu)
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
             R.id.action_settings -> true
             else -> super.onOptionsItemSelected(item)
