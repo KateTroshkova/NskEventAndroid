@@ -48,7 +48,9 @@ class RestOperation:IRemoteDataHandler {
         val disposable = requestInterface.sendAccept(event.id!!, email).
                 subscribeOn(Schedulers.io()).
                 observeOn(AndroidSchedulers.mainThread()).
-                subscribe ({ message->readyListener?.onSuccessSignUp(message) }, { _ ->readyListener?.onErrorSignUp() })
+                subscribe ({
+                    message->readyListener?.onSuccessSignUp(message)},
+                        { _ ->readyListener?.onErrorSignUp()})
     }
 
     override fun refuseEvent(event: Event, email: String) {
