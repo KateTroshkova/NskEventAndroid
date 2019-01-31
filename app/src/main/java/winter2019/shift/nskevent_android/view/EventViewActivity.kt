@@ -65,6 +65,7 @@ class EventViewActivity : AppCompatActivity(), MVPContract.ItemView, MVPContract
         super.onCreate(savedInstanceState)
         setContentView(R.layout.fragment_event_viewing)
 
+
         val txtTitile = findViewById<TextView>(R.id.title_event)
         val txtMessage = findViewById<TextView>(R.id.event_message)
         val txtLocation = findViewById<TextView>(R.id.location_event)
