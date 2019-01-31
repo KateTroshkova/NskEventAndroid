@@ -1,5 +1,6 @@
 package winter2019.shift.nskevent_android
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity;
 import android.view.*
@@ -41,6 +42,7 @@ class MainActivity : AppCompatActivity(), MVPContract.ListView{
         presenter=ListFragmentPresenter()
         presenter!!.attachView(this)
         presenter?.viewIsReady()
+        startActivity(Intent(this, TestActivity::class.java))
 
 
 

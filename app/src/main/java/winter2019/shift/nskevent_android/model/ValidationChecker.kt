@@ -17,7 +17,7 @@ class ValidationChecker private constructor() {
 
     fun isEventValid(event: Event):Boolean=isTitleValid(event.title!!) &&
             isTextValid(event.message!!) && isPlaceValid(event.place!!) &&
-            isTimeValid(event.date!!) && isEmailValid(event.autor!!)
+            isTimeValid(event.date!!) && isEmailValid(event.author!!)
 
     private fun isTitleValid(title:String?):Boolean = title!=null && !title.isEmpty()
     private fun isTextValid(text:String?):Boolean = text!=null && !text.isEmpty()

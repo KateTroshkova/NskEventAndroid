@@ -10,16 +10,16 @@ class Event():Parcelable {
     var date: String?=null
     var place: String?=null
     var memberCount: Int?=null
-    var autor: String?=null
+    var author: String?=null
 
-    constructor(id: Int?, title: String?, message: String?, date: String?, place: String?, memberCount: Int?, autor: String?) : this() {
+    constructor(id: Int?, title: String?, message: String?, date: String?, place: String?, memberCount: Int?, author: String?) : this() {
         this.id=id
         this.title=title
         this.message=message
         this.date=date
         this.place=place
         this.memberCount=memberCount
-        this.autor=autor
+        this.author=author
     }
 
     protected constructor(dest: android.os.Parcel) : this() {
@@ -29,7 +29,7 @@ class Event():Parcelable {
         date=dest.readString()
         place=dest.readString()
         memberCount=dest.readInt()
-        autor=dest.readString()
+        author=dest.readString()
     }
 
     companion object {
@@ -51,10 +51,14 @@ class Event():Parcelable {
         dest?.writeString(date)
         dest?.writeString(place)
         dest?.writeInt(memberCount!!)
-        dest?.writeString(autor)
+        dest?.writeString(author)
     }
 
     override fun describeContents(): Int {
         return 0
+    }
+
+    override fun toString(): String {
+        return title?.toString()+author?.toString()+id.toString()
     }
 }

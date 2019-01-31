@@ -27,7 +27,7 @@ public interface MVPContract {
         String getEmail();
         void showProgressBar();
         void hideProgressBar();
-        void onSuccess();
+        void onSuccess(Event event);
         void onError();
         void showAll();
     }

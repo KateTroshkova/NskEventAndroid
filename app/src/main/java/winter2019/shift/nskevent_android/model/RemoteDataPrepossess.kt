@@ -38,38 +38,38 @@ class RemoteDataPrepossess: IRemoteDataHandler {
     }
 
     override fun signUpForEvent(event: Event, email: String) {
-        if (validationChecker.isEventValid(event) && validationChecker.isEmailValid(email)){
+        //if (validationChecker.isEventValid(event) && validationChecker.isEmailValid(email)){
             restOperation?.signUpForEvent(event, email)
-        }
-        else{
-            errorHandler?.onError(GlobalTextVariables.ERROR_WRONG_DATA)
-        }
+        //}
+        //else{
+         //   errorHandler?.onError(GlobalTextVariables.ERROR_WRONG_DATA)
+        //}
     }
 
     override fun refuseEvent(event: Event, email: String) {
-        if (validationChecker.isEventValid(event) && validationChecker.isEmailValid(email)){
+        //if (validationChecker.isEventValid(event) && validationChecker.isEmailValid(email)){
             restOperation?.refuseEvent(event, email)
-        }
-        else{
-            errorHandler?.onError(GlobalTextVariables.ERROR_WRONG_DATA)
-        }
+        //}
+        //else{
+         //   errorHandler?.onError(GlobalTextVariables.ERROR_WRONG_DATA)
+        //}
     }
 
     override fun createEvent(event: Event) {
-        if (validationChecker.isEventValid(event)){
+        //if (validationChecker.isEventValid(event)){
             restOperation?.createEvent(event)
-        }
-        else{
-            errorHandler?.onError(GlobalTextVariables.ERROR_WRONG_DATA)
-        }
+        //}
+        //else{
+         //   errorHandler?.onError(GlobalTextVariables.ERROR_WRONG_DATA)
+        //}
     }
 
     override fun deleteEvent(event: Event, email: String) {
-        if (validationChecker.isEventValid(event) && validationChecker.isEmailValid(email)){
+       // if (validationChecker.isEventValid(event) && validationChecker.isEmailValid(email)){
             restOperation?.deleteEvent(event, email)
-        }
-        else{
-            errorHandler?.onError(GlobalTextVariables.ERROR_WRONG_DATA)
-        }
+        //}
+        //else{
+        //    errorHandler?.onError(GlobalTextVariables.ERROR_WRONG_DATA)
+        //}
     }
 }

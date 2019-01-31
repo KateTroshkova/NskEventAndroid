@@ -7,6 +7,7 @@ import java.util.List;
 
 import winter2019.shift.nskevent_android.model.Event;
 import winter2019.shift.nskevent_android.model.RemoteDataPrepossess;
+import winter2019.shift.nskevent_android.model.Answer;
 
 public class ListFragmentPresenter extends BasePresenter<MVPContract.ListView>{
 
@@ -40,16 +41,16 @@ public class ListFragmentPresenter extends BasePresenter<MVPContract.ListView>{
         }
 
         @Override
-        public void onSuccessSignUp() { }
+        public void onSuccessSignUp(Answer answer) { }
 
         @Override
-        public void onSuccessRefuse() { }
+        public void onSuccessRefuse(Answer answer) { }
 
         @Override
-        public void onSuccessCreate() { }
+        public void onSuccessCreate(Answer answer) { }
 
         @Override
-        public void onSuccessDelete() { }
+        public void onSuccessDelete(Answer answer) { }
 
         @Override
         public void onErrorSignUp() { }
