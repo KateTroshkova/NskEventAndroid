@@ -31,7 +31,7 @@ class RestOperation:IRemoteDataHandler {
     }
 
     override fun requestEventInfo(page: Int, limit:Int) {
-        val disposable = requestInterface.getNEvent(page, limit).
+        val disposable = requestInterface.getAllEvent().
                 subscribeOn(Schedulers.io()).
                 observeOn(AndroidSchedulers.mainThread()).
                 subscribe ({ list->readyListener?.onGetNEvents(list.toMutableList()) }, { _ ->readyListener?.onError() })
