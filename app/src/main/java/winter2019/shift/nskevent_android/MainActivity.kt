@@ -16,6 +16,7 @@ import winter2019.shift.nskevent_android.view.EventViewActivity
 import winter2019.shift.nskevent_android.view.EventsAdapter
 
 class MainActivity : AppCompatActivity(), MVPContract.ListView{
+
     override fun showCreationActivity() {
     }
 
