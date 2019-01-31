@@ -1,5 +1,6 @@
 package winter2019.shift.nskevent_android
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity;
 import android.view.*
@@ -11,9 +12,11 @@ import kotlinx.android.synthetic.main.activity_main.*
 import winter2019.shift.nskevent_android.model.Event
 import winter2019.shift.nskevent_android.presenter.ListFragmentPresenter
 import winter2019.shift.nskevent_android.presenter.MVPContract
+import winter2019.shift.nskevent_android.view.EventViewActivity
 import winter2019.shift.nskevent_android.view.EventsAdapter
 
 class MainActivity : AppCompatActivity(), MVPContract.ListView{
+
 
     override fun load(events: MutableList<Event>?) {
 
@@ -33,9 +36,16 @@ class MainActivity : AppCompatActivity(), MVPContract.ListView{
 
         listEvent.adapter = EventsAdapter(this, R.layout._list_item_event_one, events as ArrayList<Event>)
         listEvent.setOnItemClickListener { AdapterView, view, position, id ->
-            if (position == 0) {
+            //For test
+            /*if (position == 0) {
                 Toast.makeText(this, "fffffff", Toast.LENGTH_SHORT).show()
-            }
+            }*/
+
+
+           var intent = Intent(this, EventViewActivity::class.java)
+            intent.putExtra("eventItem", position)
+           startActivity(intent)
+
         }
     }
 
@@ -65,6 +75,8 @@ class MainActivity : AppCompatActivity(), MVPContract.ListView{
 
 
     }
+
+
 
     fun update(view:View){
 
