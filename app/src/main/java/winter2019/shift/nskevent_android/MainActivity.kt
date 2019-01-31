@@ -43,7 +43,8 @@ class MainActivity : AppCompatActivity(), MVPContract.ListView{
 
 
            var intent = Intent(this, EventViewActivity::class.java)
-            intent.putExtra("eventItem", position)
+            intent.putExtra("eventPosition", position)
+            intent.putParcelableArrayListExtra("EventsList", events)
            startActivity(intent)
 
         }
