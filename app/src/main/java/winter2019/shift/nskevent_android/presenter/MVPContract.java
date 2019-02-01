@@ -12,6 +12,7 @@ public interface MVPContract {
         void update(List<Event> events);
         void showDetail(Event event);
         void onError();
+        void showCreationActivity();
     }
 
     interface ItemView extends MVPView{
@@ -27,7 +28,7 @@ public interface MVPContract {
         String getEmail();
         void showProgressBar();
         void hideProgressBar();
-        void onSuccess();
+        void onSuccess(Event event);
         void onError();
         void showAll();
     }

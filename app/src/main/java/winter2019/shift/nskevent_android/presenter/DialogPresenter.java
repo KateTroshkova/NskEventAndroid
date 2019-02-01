@@ -6,6 +6,7 @@ import java.util.List;
 
 import winter2019.shift.nskevent_android.model.Event;
 import winter2019.shift.nskevent_android.model.RemoteDataPrepossess;
+import winter2019.shift.nskevent_android.model.Answer;
 
 public class DialogPresenter extends BasePresenter<MVPContract.DialogView> {
 
@@ -31,25 +32,25 @@ public class DialogPresenter extends BasePresenter<MVPContract.DialogView> {
         public void onGetEvent(@NotNull Event event) { }
 
         @Override
-        public void onSuccessSignUp() {
+        public void onSuccessSignUp(Answer answer) {
             DialogPresenter.this.getView().hideProgressBar();
             DialogPresenter.this.getView().onSuccess();
             DialogPresenter.this.getView().hideDialog();
         }
 
         @Override
-        public void onSuccessRefuse() {
+        public void onSuccessRefuse(Answer answer) {
             DialogPresenter.this.getView().hideProgressBar();
             DialogPresenter.this.getView().onSuccess();
             DialogPresenter.this.getView().hideDialog();
         }
 
         @Override
-        public void onSuccessCreate() {
+        public void onSuccessCreate(Answer answer) {
         }
 
         @Override
-        public void onSuccessDelete() {
+        public void onSuccessDelete(Answer answer) {
             DialogPresenter.this.getView().hideProgressBar();
             DialogPresenter.this.getView().onSuccess();
             DialogPresenter.this.getView().hideDialog();

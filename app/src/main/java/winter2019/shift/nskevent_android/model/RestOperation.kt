@@ -48,28 +48,32 @@ class RestOperation:IRemoteDataHandler {
         val disposable = requestInterface.sendAccept(event.id!!, email).
                 subscribeOn(Schedulers.io()).
                 observeOn(AndroidSchedulers.mainThread()).
-                subscribe ({ message->readyListener?.onSuccessSignUp()}, { _ ->readyListener?.onErrorSignUp()})
+                subscribe ({
+                    message->readyListener?.onSuccessSignUp(message)},
+                        { _ ->readyListener?.onErrorSignUp()})
     }
 
     override fun refuseEvent(event: Event, email: String) {
         val disposable = requestInterface.sendRefuse(event.id!!, email).
                 subscribeOn(Schedulers.io()).
                 observeOn(AndroidSchedulers.mainThread()).
-                subscribe ({ _ ->readyListener?.onSuccessRefuse()}, { _ ->readyListener?.onErrorRefuse()})
+                subscribe ({ message ->readyListener?.onSuccessRefuse(message)}, { _ ->readyListener?.onErrorRefuse()})
     }
 
     override fun createEvent(event: Event) {
         val disposable = requestInterface.createEvent(event).
                 subscribeOn(Schedulers.io()).
                 observeOn(AndroidSchedulers.mainThread()).
-                subscribe ({ message->readyListener?.onSuccessCreate()}, { _ ->readyListener?.onErrorCreate()})
+                subscribe ({
+                    message->readyListener?.onSuccessCreate(message)}, { _ ->readyListener?.onErrorCreate() })
     }
 
     override fun deleteEvent(event: Event, email: String) {
         val disposable = requestInterface.deleteEvent(event.id!!, email).
                 subscribeOn(Schedulers.io()).
                 observeOn(AndroidSchedulers.mainThread()).
-                subscribe ({ message->readyListener?.onSuccessDelete()}, { _ ->readyListener?.onErrorDelete()})
+                subscribe ({
+                    message->readyListener?.onSuccessDelete(message)}, { _ ->readyListener?.onErrorDelete() })
     }
 
     fun release(disposable: Disposable){

@@ -14,10 +14,14 @@ import kotlinx.android.synthetic.main.fragment_event_creating.*
 import kotlinx.android.synthetic.main.toolbar.*
 import winter2019.shift.nskevent_android.MainActivity
 import winter2019.shift.nskevent_android.R
+import winter2019.shift.nskevent_android.model.Event
 import winter2019.shift.nskevent_android.presenter.CreateFragmentPresenter
 import winter2019.shift.nskevent_android.presenter.MVPContract
 
 class EventCreateActivity : AppCompatActivity(), MVPContract.CreateView {
+    override fun onSuccess(event: Event?) {
+        Toast.makeText(applicationContext, "Событие создано!", Toast.LENGTH_SHORT).show()
+    }
 
     private var titleEditText: EditText? = null
     private var messageEditText: EditText? = null
@@ -52,15 +56,9 @@ class EventCreateActivity : AppCompatActivity(), MVPContract.CreateView {
     }
 
     override fun showProgressBar() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun hideProgressBar() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun onSuccess() {
-        Toast.makeText(applicationContext, "Событие создано!", Toast.LENGTH_SHORT).show()
     }
 
     override fun onError() {
@@ -107,6 +105,7 @@ class EventCreateActivity : AppCompatActivity(), MVPContract.CreateView {
                  alertDialog = builder.show()
 
                  val presenter = CreateFragmentPresenter()
+                 presenter.attachView(this)
                  viewMessageSend.button_sending.setOnClickListener {
                      presenter.onClick()
                  }

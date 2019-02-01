@@ -7,8 +7,11 @@ import java.util.List;
 import winter2019.shift.nskevent_android.model.Event;
 import winter2019.shift.nskevent_android.model.EventFactory;
 import winter2019.shift.nskevent_android.model.RemoteDataPrepossess;
+import winter2019.shift.nskevent_android.model.Answer;
 
 public class CreateFragmentPresenter extends BasePresenter<MVPContract.CreateView>{
+
+    private Event newEvent;
 
     private IRemoteDataReadyListener listener=new IRemoteDataReadyListener() {
         @Override
@@ -28,24 +31,25 @@ public class CreateFragmentPresenter extends BasePresenter<MVPContract.CreateVie
         }
 
         @Override
-        public void onSuccessSignUp() {
+        public void onSuccessSignUp(Answer answer) {
 
         }
 
         @Override
-        public void onSuccessRefuse() {
+        public void onSuccessRefuse(Answer answer) {
 
         }
 
         @Override
-        public void onSuccessCreate() {
+        public void onSuccessCreate(Answer answer) {
+            newEvent.setId(answer.getId());
             CreateFragmentPresenter.this.getView().hideProgressBar();
-            CreateFragmentPresenter.this.getView().onSuccess();
+            CreateFragmentPresenter.this.getView().onSuccess(newEvent);
             CreateFragmentPresenter.this.getView().showAll();
         }
 
         @Override
-        public void onSuccessDelete() {
+        public void onSuccessDelete(Answer answer) {
 
         }
 

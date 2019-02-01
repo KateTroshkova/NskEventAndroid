@@ -17,6 +17,9 @@ import winter2019.shift.nskevent_android.view.EventsAdapter
 
 class MainActivity : AppCompatActivity(), MVPContract.ListView{
 
+    override fun showCreationActivity() {
+    }
+
     var presenter:ListFragmentPresenter?=null
 
     override fun load(events: MutableList<Event>?) {
