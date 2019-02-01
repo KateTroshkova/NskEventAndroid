@@ -84,6 +84,7 @@ class EventCreateActivity : AppCompatActivity(), MVPContract.CreateView {
         placeEditText = findViewById<EditText>(R.id.location_event)
         dateEditText = findViewById<EditText>(R.id.event_date)
         emailEditText = findViewById<EditText>(R.id.event_email)
+        findViewById<ImageView>(R.id.back_button).setOnClickListener { onBackPressed() }
         viewProgressBar=findViewById(R.id.progress_bar)
         viewProgressBar?.visibility= View.INVISIBLE
         viewProgressBar?.indeterminateDrawable?.setColorFilter(resources.getColor(R.color.colorAccent), android.graphics.PorterDuff.Mode.MULTIPLY);

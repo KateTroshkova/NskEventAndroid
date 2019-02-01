@@ -2,11 +2,13 @@ package winter2019.shift.nskevent_android
 
 import android.content.Context
 import android.content.Intent
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity;
 import android.view.*
 import android.widget.ImageView
 import android.widget.ListView
+import android.widget.ProgressBar
 
 import kotlinx.android.synthetic.main.toolbar.*
 import winter2019.shift.nskevent_android.model.Event
@@ -49,6 +51,17 @@ class MainActivity : AppCompatActivity(), MVPContract.ListView{
         setContentView(R.layout.activity_main)
         setSupportActionBar(event_toolbar)
         findViewById<ImageView>(R.id.back_button).visibility=View.INVISIBLE
+
+        var viewProgressBar=findViewById<ProgressBar>(R.id.progress_bar)
+        viewProgressBar.visibility=View.INVISIBLE
+        viewProgressBar.indeterminateDrawable?.setColorFilter(resources.getColor(R.color.colorAccent), android.graphics.PorterDuff.Mode.MULTIPLY);
+
+        var cm = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        var activeNetwork = cm.activeNetworkInfo;
+        var isConnected = activeNetwork!=null && activeNetwork.isConnectedOrConnecting
+        if (!isConnected){
+            viewProgressBar.visibility=View.VISIBLE
+        }
 
         presenter=ListFragmentPresenter()
         presenter?.attachView(this)
