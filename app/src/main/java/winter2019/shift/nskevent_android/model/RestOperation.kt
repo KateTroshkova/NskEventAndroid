@@ -65,7 +65,9 @@ class RestOperation:IRemoteDataHandler {
                 subscribeOn(Schedulers.io()).
                 observeOn(AndroidSchedulers.mainThread()).
                 subscribe ({
-                    message->readyListener?.onSuccessCreate(message)}, { _ ->readyListener?.onErrorCreate() })
+                    message->
+                    readyListener?.onSuccessCreate(message)},
+                        { _ ->readyListener?.onErrorCreate() })
     }
 
     override fun deleteEvent(event: Event, email: String) {

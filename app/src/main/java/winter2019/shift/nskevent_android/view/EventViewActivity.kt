@@ -1,6 +1,7 @@
 package winter2019.shift.nskevent_android.view
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
@@ -11,6 +12,8 @@ import android.widget.*
 import kotlinx.android.synthetic.main.activity_message_sending.*
 import kotlinx.android.synthetic.main.activity_message_sending.view.*
 import kotlinx.android.synthetic.main.fragment_event_viewing.view.*
+import mehdi.sakout.fancybuttons.FancyButton
+import winter2019.shift.nskevent_android.MainActivity
 import winter2019.shift.nskevent_android.R
 import winter2019.shift.nskevent_android.model.Event
 import winter2019.shift.nskevent_android.presenter.Action
@@ -42,7 +45,8 @@ class EventViewActivity : AppCompatActivity(), MVPContract.ItemView, MVPContract
     }
 
     override fun onSuccess() {
-        Toast.makeText(applicationContext, "Вы зарегистрированы", Toast.LENGTH_SHORT).show()
+        Toast.makeText(applicationContext, "Операция прошла успешна", Toast.LENGTH_SHORT).show()
+        startActivity(Intent(this, MainActivity::class.java))
     }
 
     override fun onError() {
@@ -51,8 +55,10 @@ class EventViewActivity : AppCompatActivity(), MVPContract.ItemView, MVPContract
 
     override fun showDialog(event: Event?, action: Action?) {
         val viewMessageSend = LayoutInflater.from(this).inflate(R.layout.activity_message_sending, null)
+        viewProgressBar=viewMessageSend.findViewById(R.id.progress_bar)
+        viewProgressBar?.visibility=View.INVISIBLE
+        viewProgressBar?.indeterminateDrawable?.setColorFilter(resources.getColor(R.color.colorAccent), android.graphics.PorterDuff.Mode.MULTIPLY);
         val builder = AlertDialog.Builder(this)
-                .setTitle("Введите ваш email для подтверждения")
                 .setView(viewMessageSend)
         alertDialog = builder.show()
 
@@ -75,15 +81,14 @@ class EventViewActivity : AppCompatActivity(), MVPContract.ItemView, MVPContract
         super.onCreate(savedInstanceState)
         setContentView(R.layout.fragment_event_viewing)
 
-
-
         val txtTitile = findViewById<TextView>(R.id.title_event)
         val txtMessage = findViewById<TextView>(R.id.event_message)
         val txtLocation = findViewById<TextView>(R.id.location_event)
         val txtDate = findViewById<TextView>(R.id.event_date)
-        val butArgee = findViewById<Button>(R.id.event_agree)
-        val butRefuse = findViewById<Button>(R.id.event_refuse)
-        val butEventDelete = findViewById<ImageButton>(R.id.button_event_delete)
+        val butArgee = findViewById<FancyButton>(R.id.event_agree)
+        val butRefuse = findViewById<FancyButton>(R.id.event_refuse)
+        val butEventDelete = findViewById<ImageView>(R.id.button_event_delete)
+        findViewById<ImageView>(R.id.back_button).setOnClickListener { onBackPressed() }
 
         val event: Event = intent.getParcelableExtra("EventsList")
         txtTitile.text = event.title

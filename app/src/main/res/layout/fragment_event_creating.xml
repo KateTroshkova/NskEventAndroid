@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <include layout="@layout/toolbar"/>
-
-        <ProgressBar
-            android:id="@+id/progress_bar_create"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+        <include layout="@layout/toolbar" />
 
         <EditText
             android:id="@+id/title_event"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
+            android:layout_margin="@dimen/normal"
             android:inputType="textPersonName"
-            android:text="Название" />
+            android:hint="@string/name" />
 
         <EditText
             android:id="@+id/event_message"
@@ -33,70 +33,78 @@
             android:layout_height="108dp"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Описание" />
+            android:layout_margin="@dimen/normal"
+            android:hint="@string/description"  />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical"
+            android:layout_margin="@dimen/normal">
 
             <TextView
                 android:id="@+id/label_location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Место проведения" />
+                android:textColor="@color/colorBlack"
+                android:text="@string/place" />
 
             <EditText
                 android:id="@+id/location_event"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Место проведения" />
+                android:layout_weight="1"/>
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical"
+            android:layout_margin="@dimen/normal">
 
             <TextView
                 android:id="@+id/Дата"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Дата" />
+                android:textColor="@color/colorBlack"
+                android:text="@string/date" />
 
             <EditText
                 android:id="@+id/event_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:ems="10"
-                android:inputType="textPersonName"
-                tools:text="Дата" />
+                android:hint="@string/date_hint"
+                android:inputType="date" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="@dimen/normal">
 
             <TextView
                 android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Введите ваш email" />
+                android:textColor="@color/colorBlack"
+                android:text="@string/email_text_hint" />
 
             <EditText
                 android:id="@+id/event_email"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:ems="10"
-                android:inputType="textPersonName"
-                tools:text="emai" />
-
+                android:hint="@string/email_edit_text_hint"
+                android:inputType="textEmailAddress"/>
         </LinearLayout>
 
     </LinearLayout>
 
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>

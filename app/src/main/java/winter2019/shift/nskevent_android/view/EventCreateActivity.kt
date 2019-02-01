@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.*
 import kotlinx.android.synthetic.main.activity_message_sending.view.*
 import kotlinx.android.synthetic.main.fragment_event_creating.*
@@ -30,6 +31,7 @@ class EventCreateActivity : AppCompatActivity(), MVPContract.CreateView {
     private var memberCount: Int = 0
     private var emailEditText: EditText? = null
     private var alertDialog:AlertDialog?=null
+    private var viewProgressBar: ProgressBar? = null
 
     override fun getTitleEvent(): String {
         return titleEditText?.text.toString()
@@ -56,9 +58,11 @@ class EventCreateActivity : AppCompatActivity(), MVPContract.CreateView {
     }
 
     override fun showProgressBar() {
+        viewProgressBar?.visibility = View.VISIBLE
     }
 
     override fun hideProgressBar() {
+        viewProgressBar?.visibility = View.INVISIBLE
     }
 
     override fun onError() {
@@ -80,14 +84,9 @@ class EventCreateActivity : AppCompatActivity(), MVPContract.CreateView {
         placeEditText = findViewById<EditText>(R.id.location_event)
         dateEditText = findViewById<EditText>(R.id.event_date)
         emailEditText = findViewById<EditText>(R.id.event_email)
-        var buttonCreateEvent = findViewById<Button>(R.id.button_create_events)
-        val progressBarCreate = findViewById<ProgressBar>(R.id.progress_bar_create)
-
-/*
-        val presenter = CreateFragmentPresenter()
-        button_create.setOnClickListener {
-            presenter.onClick()
-        }*/
+        viewProgressBar=findViewById(R.id.progress_bar)
+        viewProgressBar?.visibility= View.INVISIBLE
+        viewProgressBar?.indeterminateDrawable?.setColorFilter(resources.getColor(R.color.colorAccent), android.graphics.PorterDuff.Mode.MULTIPLY);
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -98,18 +97,9 @@ class EventCreateActivity : AppCompatActivity(), MVPContract.CreateView {
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
          when (item?.itemId) {
              R.id.button_create_events -> {
-                 val viewMessageSend = LayoutInflater.from(this).inflate(R.layout.activity_message_sending, null)
-                 val builder = AlertDialog.Builder(this)
-                         .setTitle("Введите ваш email для подтверждения")
-                         .setView(viewMessageSend)
-                 alertDialog = builder.show()
-
                  val presenter = CreateFragmentPresenter()
                  presenter.attachView(this)
-                 viewMessageSend.button_sending.setOnClickListener {
-                     presenter.onClick()
-                 }
-
+                 presenter.onClick()
              }
          }
                 return super.onOptionsItemSelected(item)

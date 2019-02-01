@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity;
 import android.view.*
+import android.widget.ImageView
 import android.widget.ListView
 
 import kotlinx.android.synthetic.main.toolbar.*
@@ -18,6 +19,8 @@ import winter2019.shift.nskevent_android.view.EventsAdapter
 class MainActivity : AppCompatActivity(), MVPContract.ListView{
 
     override fun showCreationActivity() {
+        val intent = Intent(this, EventCreateActivity::class.java)
+        startActivity(intent)
     }
 
     var presenter:ListFragmentPresenter?=null
@@ -45,6 +48,7 @@ class MainActivity : AppCompatActivity(), MVPContract.ListView{
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(event_toolbar)
+        findViewById<ImageView>(R.id.back_button).visibility=View.INVISIBLE
 
         presenter=ListFragmentPresenter()
         presenter?.attachView(this)
@@ -59,20 +63,7 @@ class MainActivity : AppCompatActivity(), MVPContract.ListView{
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.menu_add_event, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.button_item_new_event -> showCreateActivity(this)
-        }
-        return super.onOptionsItemSelected(item)
-    }
-
-    fun showCreateActivity(context: Context) {
-        val intent = Intent(context, EventCreateActivity::class.java)
-        startActivity(intent)
+    fun create(view:View){
+        presenter?.onClick()
     }
 }
