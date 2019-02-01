@@ -1,17 +1,17 @@
 package winter2019.shift.nskevent_android
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity;
 import android.view.*
-import android.widget.AdapterView
 import android.widget.ListView
-import android.widget.Toast
 
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.toolbar.*
 import winter2019.shift.nskevent_android.model.Event
 import winter2019.shift.nskevent_android.presenter.ListFragmentPresenter
 import winter2019.shift.nskevent_android.presenter.MVPContract
+import winter2019.shift.nskevent_android.view.EventCreateActivity
 import winter2019.shift.nskevent_android.view.EventViewActivity
 import winter2019.shift.nskevent_android.view.EventsAdapter
 
@@ -40,10 +40,11 @@ class MainActivity : AppCompatActivity(), MVPContract.ListView{
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.content_main)
-        setSupportActionBar(toolbar)
+        setContentView(R.layout.activity_main)
+        setSupportActionBar(event_toolbar)
+
         presenter=ListFragmentPresenter()
-        presenter!!.attachView(this)
+        presenter?.attachView(this)
         presenter?.viewIsReady()
     }
 
@@ -56,14 +57,19 @@ class MainActivity : AppCompatActivity(), MVPContract.ListView{
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.menu_main, menu)
+        menuInflater.inflate(R.menu.menu_add_event, menu)
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.action_settings -> true
-            else -> super.onOptionsItemSelected(item)
+        when (item.itemId) {
+            R.id.button_item_new_event -> showCreateActivity(this)
         }
+        return super.onOptionsItemSelected(item)
+    }
+
+    fun showCreateActivity(context: Context) {
+        val intent = Intent(context, EventCreateActivity::class.java)
+        startActivity(intent)
     }
 }
