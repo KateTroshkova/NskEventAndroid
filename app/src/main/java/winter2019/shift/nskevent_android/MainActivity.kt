@@ -1,5 +1,6 @@
 package winter2019.shift.nskevent_android
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +11,7 @@ import kotlinx.android.synthetic.main.toolbar.*
 import winter2019.shift.nskevent_android.model.Event
 import winter2019.shift.nskevent_android.presenter.ListFragmentPresenter
 import winter2019.shift.nskevent_android.presenter.MVPContract
+import winter2019.shift.nskevent_android.view.EventCreateActivity
 import winter2019.shift.nskevent_android.view.EventViewActivity
 import winter2019.shift.nskevent_android.view.EventsAdapter
 
@@ -41,10 +43,8 @@ class MainActivity : AppCompatActivity(), MVPContract.ListView{
         setContentView(R.layout.activity_main)
         setSupportActionBar(event_toolbar)
 
-
-
         presenter=ListFragmentPresenter()
-        presenter!!.attachView(this)
+        presenter?.attachView(this)
         presenter?.viewIsReady()
     }
 
@@ -62,9 +62,14 @@ class MainActivity : AppCompatActivity(), MVPContract.ListView{
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.button_item_new_event -> true
-            else -> super.onOptionsItemSelected(item)
+        when (item.itemId) {
+            R.id.button_item_new_event -> showCreateActivity(this)
         }
+        return super.onOptionsItemSelected(item)
+    }
+
+    fun showCreateActivity(context: Context) {
+        val intent = Intent(context, EventCreateActivity::class.java)
+        startActivity(intent)
     }
 }

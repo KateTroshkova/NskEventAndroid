@@ -6,8 +6,9 @@ import android.view.Menu
 import android.view.MenuItem
 import kotlinx.android.synthetic.main.toolbar.*
 import winter2019.shift.nskevent_android.R
+import winter2019.shift.nskevent_android.presenter.MVPContract
 
-class EventCreatActivity : AppCompatActivity() {
+class EventCreateActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
