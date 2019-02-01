@@ -88,6 +88,7 @@ class EventViewActivity : AppCompatActivity(), MVPContract.ItemView, MVPContract
         val butArgee = findViewById<FancyButton>(R.id.event_agree)
         val butRefuse = findViewById<FancyButton>(R.id.event_refuse)
         val butEventDelete = findViewById<ImageView>(R.id.button_event_delete)
+        val txtMembers=findViewById<TextView>(R.id.event_member)
         findViewById<ImageView>(R.id.back_button).setOnClickListener { onBackPressed() }
 
         val event: Event = intent.getParcelableExtra("EventsList")
@@ -95,6 +96,7 @@ class EventViewActivity : AppCompatActivity(), MVPContract.ItemView, MVPContract
         txtMessage.text = event.message
         txtLocation.text = event.place
         txtDate.text = event.date
+        txtMembers.text=event.memberCount.toString()
 
         val presenter = ViewFragmentPresenter(event)
         presenter.attachView(this)

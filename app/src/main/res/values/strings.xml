@@ -18,4 +18,5 @@
     <string name="cancel">Отмена</string>
     <string name="name">Название</string>
     <string name="description">Описание</string>
+    <string name="members">Участники: </string>
 </resources>

@@ -4,19 +4,22 @@ import java.util.*
 class ValidationChecker private constructor() {
 
     companion object {
-        private var instance: ValidationChecker?=null
+        private var instance: ValidationChecker? = null
 
         fun getInstance(): ValidationChecker {
-            if (instance ==null){
+            if (instance == null) {
                 instance = ValidationChecker()
             }
             return instance!!
         }
     }
 
-    fun isEventValid(event: Event):Boolean=isTitleValid(event.title!!) &&
-            isTextValid(event.message!!) && isPlaceValid(event.place!!) &&
-            isTimeValid(event.date!!) && isEmailValid(event.author!!)
+    fun isEventValid(event: Event): Boolean =
+            isTitleValid(event.title!!) &&
+                    isTextValid(event.message!!) &&
+                    isPlaceValid(event.place!!) &&
+                    isTimeValid(event.date!!) &&
+                    isEmailValid(event.author!!)
 
     private fun isTitleValid(title:String?):Boolean = title!=null && !title.isEmpty()
     private fun isTextValid(text:String?):Boolean = text!=null && !text.isEmpty()
@@ -34,7 +37,7 @@ class ValidationChecker private constructor() {
     fun isEmailValid(email:String?):Boolean{
         return email!=null && !email.isEmpty() && email.contains("@") &&
                 (email.contains("gmail.com") || email.contains("mail.ru")
-                        || email.contains("inbox.ru") || email.contains("yandex.ru"))
+                        || email.contains("inbox.ru") || email.contains("yandex.ru") || email.contains("admin.ru"))
     }
 
     private fun getTimeInMillis(time:String):Long{

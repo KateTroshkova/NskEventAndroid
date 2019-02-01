@@ -3,6 +3,8 @@ package winter2019.shift.nskevent_android.presenter;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import winter2019.shift.nskevent_android.model.Event;
@@ -11,10 +13,7 @@ import winter2019.shift.nskevent_android.model.Answer;
 
 public class ListFragmentPresenter extends BasePresenter<MVPContract.ListView>{
 
-    private static int PAGE_COUNT=0;
-    private static final int MAX_EVENTS_ON_PAGE=10;
     private List<Event> events;
-    private List<Event> newEvents;
 
     private IRemoteDataReadyListener listener=new IRemoteDataReadyListener() {
         @Override
@@ -24,15 +23,16 @@ public class ListFragmentPresenter extends BasePresenter<MVPContract.ListView>{
 
         @Override
         public void onGetNEvents(@NotNull List<Event> events) {
-            ListFragmentPresenter.this.newEvents=events;
-            if (ListFragmentPresenter.this.events==null || ListFragmentPresenter.this.events.isEmpty()) {
-                ListFragmentPresenter.this.getView().load(newEvents);
-                ListFragmentPresenter.this.events=new ArrayList<>();
-            }
-            else{
-                ListFragmentPresenter.this.getView().update(newEvents);
-            }
-            ListFragmentPresenter.this.events.addAll(newEvents);
+            Collections.sort(events, new Comparator<Event>() {
+                @Override
+                public int compare(final Event object1, final Event object2) {
+                    if (object1.getId()>object2.getId()) return -1;
+                    if (object1.getId()<object2.getId()) return 1;
+                    return 0;
+                }
+            });
+            ListFragmentPresenter.this.events=events;
+            ListFragmentPresenter.this.getView().load(events);
         }
 
         @Override
@@ -69,8 +69,7 @@ public class ListFragmentPresenter extends BasePresenter<MVPContract.ListView>{
     public void viewIsReady() {
         RemoteDataPrepossess remoteData=new RemoteDataPrepossess();
         remoteData.setReadyListener(listener);
-        PAGE_COUNT++;
-        remoteData.requestEventInfo(PAGE_COUNT, MAX_EVENTS_ON_PAGE);
+        remoteData.requestEventInfo(1, 10);
     }
 
     public void onItemClick(int position) {
