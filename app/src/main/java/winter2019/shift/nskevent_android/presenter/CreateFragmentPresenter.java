@@ -81,8 +81,8 @@ public class CreateFragmentPresenter extends BasePresenter<MVPContract.CreateVie
     }
 
     public void onClick(){
-        newEvent=new EventFactory().createEvent(
-                getView().getTitle(),
+        Event newEvent=new EventFactory().createEvent(
+                getView().getTitleEvent(),
                 getView().getMessage(),
                 getView().getDate(),
                 getView().getPlace(),
