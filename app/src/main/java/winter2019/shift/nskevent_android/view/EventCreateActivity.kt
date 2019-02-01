@@ -52,11 +52,9 @@ class EventCreateActivity : AppCompatActivity(), MVPContract.CreateView {
     }
 
     override fun showProgressBar() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun hideProgressBar() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun onSuccess() {
@@ -107,6 +105,7 @@ class EventCreateActivity : AppCompatActivity(), MVPContract.CreateView {
                  alertDialog = builder.show()
 
                  val presenter = CreateFragmentPresenter()
+                 presenter.attachView(this)
                  viewMessageSend.button_sending.setOnClickListener {
                      presenter.onClick()
                  }
