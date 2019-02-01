@@ -20,7 +20,7 @@ public interface MVPContract {
     }
 
     interface CreateView extends MVPView{
-        String getTitle();
+        String getTitleEvent();
         String getMessage();
         String getDate();
         String getPlace();
