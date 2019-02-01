@@ -6,6 +6,7 @@ import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.*
 import kotlinx.android.synthetic.main.activity_message_sending.*
 import kotlinx.android.synthetic.main.activity_message_sending.view.*
@@ -21,15 +22,19 @@ class EventViewActivity : AppCompatActivity(), MVPContract.ItemView, MVPContract
 
     private var alertDialog:AlertDialog?=null
     private var emailEditText:EditText?=null
+    private var viewProgressBar: ProgressBar? = null
 
     override fun getEmail(): String {
         return emailEditText?.text.toString()
     }
 
     override fun showProgressBar() {
+        viewProgressBar?.visibility = View.VISIBLE
     }
 
     override fun hideProgressBar() {
+        viewProgressBar?.visibility = View.INVISIBLE
+
     }
 
     override fun hideDialog() {
@@ -69,6 +74,7 @@ class EventViewActivity : AppCompatActivity(), MVPContract.ItemView, MVPContract
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.fragment_event_viewing)
+
 
 
         val txtTitile = findViewById<TextView>(R.id.title_event)

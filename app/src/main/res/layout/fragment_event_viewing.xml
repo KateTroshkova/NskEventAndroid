@@ -15,7 +15,7 @@
         <include layout="@layout/toolbar" />
 
         <ProgressBar
-            android:id="@+id/progressBar2"
+            android:id="@+id/progress_bar_view"
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
